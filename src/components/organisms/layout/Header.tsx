@@ -42,7 +42,7 @@ export const Header: VFC = memo(() => {
         /> */}
         <MenuIconButton onOpen={onOpen} />
       </Flex>
-      <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen} >
+      {/* <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen} >
         <DrawerOverlay>
           <DrawerContent>
             <DrawerBody p={0} bg="gray.100">
@@ -52,7 +52,7 @@ export const Header: VFC = memo(() => {
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>
-      </Drawer>
+      </Drawer> */}
     </>
   );
 });
