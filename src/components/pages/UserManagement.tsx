@@ -1,52 +1,35 @@
-import { memo, VFC } from "react";
-import { Wrap, WrapItem } from "@chakra-ui/react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import { memo, useEffect, VFC } from "react";
+import { Center, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
 
 import { UserCard } from "../organisms/user/UserCard";
+import { useAllUsers } from "../../hooks/useAllUsers";
 
 export const UserManagement: VFC = memo(() => {
-  // return <p>ユーザー管理ページです</p>;
+  const { getUsers, users, loading } = useAllUsers();
+
+  useEffect(() => getUsers(), []);
+
   return (
-    // <Wrap>
-    // {/* <Wrap spacing="30px"> */}
-    //   {[...Array(10)].map(() => (
-    //     <WrapItem>
-    //     <div style = {{ width: '100px', height: '100px', backgroundColor: "teal" }} />
-    //     </WrapItem>
-    //   ))}
-    // </Wrap>
-    <Wrap p={{ base: 4, md: 10 }}>
-      <WrapItem>
-        {/* <Box
-          w="260px"
-          h="260px"
-          bg="white"
-          borderRadius="10px"
-          shadow="md"
-          p={4}
-          _hover={{ cursor: "pointer", opacity: 0.8 }}
-        >
-          <Stack textAlign="center">
-            <Image
-              borderRadius="full"
-              boxSize="160px"
-              src="https://source.unsplash.com/random"
-              alt="プロフィール画像"
-              m="auto"
-            />
-            <Text fontSize="lg" fontWeight="bold">
-              圭一
-            </Text>
-            <Text fontSize="sm" color="gray">
-              keiichi kobayshi
-            </Text>
-          </Stack>
-        </Box> */}
-        <UserCard
-          imageUrl="https://source.unsplash.com/random"
-          userName="圭一"
-          fullName="keiichi kobayashi"
-        />
-      </WrapItem>
-    </Wrap>
+    <>
+      {loading ? (
+        <Center h="100vh">
+          <Spinner />
+        </Center>
+      ) : (
+        <Wrap p={{ base: 4, md: 10 }}>
+          {users.map((user) => (
+            <WrapItem key={user.id} mx="auto">
+              <UserCard
+                imageUrl="https://source.unsplash.com/random"
+                userName={user.username}
+                fullName={user.name}
+              />
+            </WrapItem>
+          ))}
+        </Wrap>
+      )}
+    </>
   );
 });
