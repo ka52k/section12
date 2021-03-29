@@ -1,5 +1,7 @@
 import { memo, VFC } from "react";
-import { Box, Image, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Wrap, WrapItem } from "@chakra-ui/react";
+
+import { UserCard } from "../organisms/user/UserCard";
 
 export const UserManagement: VFC = memo(() => {
   // return <p>ユーザー管理ページです</p>;
@@ -12,9 +14,9 @@ export const UserManagement: VFC = memo(() => {
     //     </WrapItem>
     //   ))}
     // </Wrap>
-    <Wrap p={{ base: 4, md: 10 }} >
+    <Wrap p={{ base: 4, md: 10 }}>
       <WrapItem>
-        <Box
+        {/* <Box
           w="260px"
           h="260px"
           bg="white"
@@ -38,7 +40,12 @@ export const UserManagement: VFC = memo(() => {
               keiichi kobayshi
             </Text>
           </Stack>
-        </Box>
+        </Box> */}
+        <UserCard
+          imageUrl="https://source.unsplash.com/random"
+          userName="圭一"
+          fullName="keiichi kobayashi"
+        />
       </WrapItem>
     </Wrap>
   );
